@@ -1,0 +1,43 @@
+<LinearLayout
+    android:layout_height="fill_parent"
+    android:layout_width="fill_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical">
+
+    <android.support.v4.view.ViewPager xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:id="@+id/pager"
+    android:layout_width="match_parent" android:layout_height="0dp"
+    tools:context=".MainActivity"
+    android:layout_weight="10" />
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <ImageView
+            android:layout_width="64dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/main_album_art"
+            android:src="@drawable/no_album_image_v2" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="New Text"
+            android:id="@+id/main_song_title"
+            android:layout_alignParentTop="true"
+            android:layout_toRightOf="@+id/main_album_art"
+            android:layout_toEndOf="@+id/main_album_art" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="New Text"
+            android:id="@+id/main_song_artist"
+            android:layout_gravity="center_horizontal"
+            android:layout_below="@+id/main_song_title"
+            android:layout_toRightOf="@+id/main_album_art"
+            android:layout_toEndOf="@+id/main_album_art" />
+    </RelativeLayout>
+</LinearLayout>
