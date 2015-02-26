@@ -1,118 +1,174 @@
 package aeternussamurai.frequencymusicplayerv2;
 
-import java.util.Locale;
+import java.io.File;
+import java.util.ArrayList;
+import java.util.Collections;
 
-import android.support.v7.app.ActionBarActivity;
-import android.support.v7.app.ActionBar;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v4.app.FragmentPagerAdapter;
+import android.app.ActionBar;
+import android.app.ActionBar.Tab;
+import android.app.FragmentTransaction;
+import android.content.BroadcastReceiver;
+import android.content.ContentResolver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
+import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.media.MediaMetadataRetriever;
+import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.provider.MediaStore;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
-import android.view.Gravity;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.ToggleButton;
+
+import aeternussamurai.frequencymusicplayerv2.R;
+
+/**
+ * The Main Activity of the Frequency Music Player. 
+ * @author Chase Parks
+ * Created June 6, 2014
+ */
+public class MainActivity extends FragmentActivity implements
+		ActionBar.TabListener{
+
+	private ViewPager vp;
+	private ActionBar actionBar;
+	private Intent playIntent;
+
+	//private Intent nowPlayingIntent;
+
+	private int tabPos;
+	private int songPos;
+
+	private ToggleButton playPauseButton;
+
+	private LinearLayout currentSongLay;
+
+	private BroadcastReceiver receiver;
+	//private Intent selectionIntent;
 
 
-public class MainActivity extends ActionBarActivity {
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
 
-    /**
-     * The {@link android.support.v4.view.PagerAdapter} that will provide
-     * fragments for each of the sections. We use a
-     * {@link FragmentPagerAdapter} derivative, which will keep every
-     * loaded fragment in memory. If this becomes too memory intensive, it
-     * may be best to switch to a
-     * {@link android.support.v4.app.FragmentStatePagerAdapter}.
-     */
-    SectionsPagerAdapter mSectionsPagerAdapter;
+	}
 
-    /**
-     * The {@link ViewPager} that will host the section contents.
-     */
-    ViewPager mViewPager;
+	@Override
+	protected void onStart() {
+	}
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+	@Override
+	protected void onResume() {
+	}
 
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
 
-        // Create the adapter that will return a fragment for each of the three
-        // primary sections of the activity.
-        mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
+		// Inflate the menu; this adds items to the action bar if it is present.
+		getMenuInflater().inflate(R.menu.menu_main, menu);
 
-        // Set up the ViewPager with the sections adapter.
-        mViewPager = (ViewPager) findViewById(R.id.pager);
-        mViewPager.setAdapter(mSectionsPagerAdapter);
+		return true;
+	}
 
-    }
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		// Handle action bar item clicks here. The action bar will
+		// automatically handle clicks on the Home/Up button, so long
+		// as you specify a parent activity in AndroidManifest.xml.
+		int id = item.getItemId();
+		switch (id) {
+		case R.id.action_settings:
+			// settings
+			break;
+		}
+		return super.onOptionsItemSelected(item);
+	}
 
+	@Override
+	public void onTabSelected(Tab tab, FragmentTransaction ft) {
+		vp.setCurrentItem(tab.getPosition());
+		tabPos = tab.getPosition();
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
+	}
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
+	@Override
+	public void onTabUnselected(Tab tab, FragmentTransaction ft) {
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
+	}
 
-        return super.onOptionsItemSelected(item);
-    }
+	@Override
+	public void onTabReselected(Tab tab, FragmentTransaction ft) {
 
+	}
 
-    /**
-     * A {@link FragmentPagerAdapter} that returns a fragment corresponding to
-     * one of the sections/tabs/pages.
-     */
-    public class SectionsPagerAdapter extends FragmentPagerAdapter {
+//	/**
+//	 * This is a helper method to set the data of the current song
+//	 * to the UI. The current playing song must not be null.
+//	 */
+//	private void setCurrentSong() {
+//		currentSongLay.setEnabled(true);
+//		currentSongLay.setAlpha(1);
+//		MediaMetadataRetriever meta = new MediaMetadataRetriever();
+//		Song currSong = musicSer.getCurrSong();
+//		Uri currUri = Uri.fromFile(new File(currSong.getPath()));
+//		ImageView currImage = (ImageView) findViewById(R.id.main_current_image);
+//		TextView currTitle = (TextView) findViewById(R.id.main_current_title);
+//		TextView currArtist = (TextView) findViewById(R.id.main_current_artist);
+//		try {
+//			meta.setDataSource(this, currUri);
+//		} catch (Exception e) {
+//			Log.e("MAIN", "Error setting data source");
+//		}
+//		byte[] art = meta.getEmbeddedPicture();
+//		if (art != null) {
+//			Bitmap image = BitmapFactory.decodeByteArray(art, 0, art.length);
+//			currImage.setImageBitmap(image);
+//		} else {
+//			currImage.setImageDrawable(getResources().getDrawable(
+//					R.drawable.no_album_image));
+//		}
+//		currTitle.setText(currSong.getTitle());
+//		currArtist.setText(currSong.getArtist());
+//
+//		meta.release();
+//
+//	}
 
-        public SectionsPagerAdapter(FragmentManager fm) {
-            super(fm);
-        }
+	@Override
+	protected void onPause() {
+		unregisterReceiver(receiver);
+		super.onPause();
+	}
 
-        @Override
-        public Fragment getItem(int position) {
-            // getItem is called to instantiate the fragment for the given page.
-            // Return a PlaceholderFragment (defined as a static inner class below).
-            return null;
-        }
+	@Override
+	protected void onSaveInstanceState(Bundle outState) {
 
-        @Override
-        public int getCount() {
-            // Show 3 total pages.
-            return 4;
-        }
+	}
 
-        @Override
-        public CharSequence getPageTitle(int position) {
-            Locale l = Locale.getDefault();
-            switch (position) {
-                case 0:
-                    return String.format(l, "%s", getString(R.string.title_section1));
-                case 1:
-                    return String.format(l, "%s", getString(R.string.title_section2));
-                case 2:
-                    return String.format(l, "%s", getString(R.string.title_section3));
-                case 3:
-                    return String.format(l, "%s", getString(R.string.title_section4));
-            }
-            return null;
-        }
-    }
+	@Override
+	protected void onDestroy() {
+		// unregisterReceiver(receiver);
+		receiver = null;
+//		if (musicSer.isPlaying() != true) {
+//			stopService(playIntent);
+//			musicSer = null;
+//		}
+		super.onDestroy();
+	}
+
 }
