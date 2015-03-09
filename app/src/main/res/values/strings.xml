@@ -32,4 +32,6 @@
     <string name="image">Image</string>
     <string name="init_song_pos">1</string>
 
+    <string name="hello_world">Hello world!</string>
+
 </resources>
