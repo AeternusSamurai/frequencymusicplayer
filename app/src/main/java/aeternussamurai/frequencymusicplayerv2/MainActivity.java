@@ -6,6 +6,7 @@ import java.util.Collections;
 
 import android.app.ActionBar;
 import android.app.ActionBar.Tab;
+import android.app.Activity;
 import android.app.FragmentTransaction;
 import android.content.BroadcastReceiver;
 import android.content.ContentResolver;
@@ -42,8 +43,7 @@ import aeternussamurai.frequencymusicplayerv2.R;
  * @author Chase Parks
  * Created June 6, 2014
  */
-public class MainActivity extends FragmentActivity implements
-		ActionBar.TabListener{
+public class MainActivity extends Activity{
 
 	private ViewPager vp;
 	private ActionBar actionBar;
@@ -97,23 +97,6 @@ public class MainActivity extends FragmentActivity implements
 			break;
 		}
 		return super.onOptionsItemSelected(item);
-	}
-
-	@Override
-	public void onTabSelected(Tab tab, FragmentTransaction ft) {
-		vp.setCurrentItem(tab.getPosition());
-		tabPos = tab.getPosition();
-
-	}
-
-	@Override
-	public void onTabUnselected(Tab tab, FragmentTransaction ft) {
-
-	}
-
-	@Override
-	public void onTabReselected(Tab tab, FragmentTransaction ft) {
-
 	}
 
 //	/**
