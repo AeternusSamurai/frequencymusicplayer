@@ -65,15 +65,19 @@ public class MainActivity extends Activity{
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-
+        setContentView(R.layout.activity_main);
+        // TODO create images to be the backgrounds for the main screen buttons
 	}
 
 	@Override
 	protected void onStart() {
+
+        super.onStart();
 	}
 
 	@Override
 	protected void onResume() {
+        super.onResume();
 	}
 
 	@Override
@@ -134,13 +138,13 @@ public class MainActivity extends Activity{
 
 	@Override
 	protected void onPause() {
-		unregisterReceiver(receiver);
+		//unregisterReceiver(receiver);
 		super.onPause();
 	}
 
 	@Override
 	protected void onSaveInstanceState(Bundle outState) {
-
+        super.onSaveInstanceState(outState);
 	}
 
 	@Override

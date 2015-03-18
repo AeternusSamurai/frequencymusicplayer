@@ -31,6 +31,10 @@
     <string name="show_playlist">Show Playlist</string>
     <string name="image">Image</string>
     <string name="init_song_pos">1</string>
+    <string name="song_button">Songs</string>
+    <string name="albums_button">Albums</string>
+    <string name="artists_button">Artists</string>
+    <string name="playlists_button">Playlists</string>
 
     <string name="hello_world">Hello world!</string>
 
