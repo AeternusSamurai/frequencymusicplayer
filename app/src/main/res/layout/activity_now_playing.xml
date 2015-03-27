@@ -226,7 +226,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_below="@+id/LinearLayout2"
-        android:background="@android:color/background_dark"
+        android:background="@drawable/dark_gray_transparent"
         android:orientation="horizontal" >
 
         <TextView
