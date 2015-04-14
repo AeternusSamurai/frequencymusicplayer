@@ -82,7 +82,7 @@
                 android:id="@+id/albums_button"
                 android:layout_weight=".5"
                 android:layout_margin="5dp"
-                android:src="@drawable/album_button_image"
+                android:src="@drawable/song_button_image"
                 android:background="#00ffffff" />
         </LinearLayout>
 
@@ -103,7 +103,7 @@
                 android:id="@+id/artist_button"
                 android:layout_weight=".5"
                 android:layout_margin="5dp"
-                android:src="@drawable/album_button_image"
+                android:src="@drawable/artist_button_image"
                 android:background="#00ffffff" />
 
             <ImageButton
@@ -113,7 +113,7 @@
                 android:id="@+id/playlists_button"
                 android:layout_weight=".5"
                 android:background="#00ffffff"
-                android:src="@drawable/album_button_image"
+                android:src="@drawable/playlist_button_image"
                 android:padding="5dp" />
         </LinearLayout>
     </RelativeLayout>
