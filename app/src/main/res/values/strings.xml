@@ -37,5 +37,6 @@
     <string name="playlists_button">Playlists</string>
 
     <string name="hello_world">Hello world!</string>
+    <string name="title_activity_main_activity2">MainActivity2Activity</string>
 
 </resources>
