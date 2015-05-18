@@ -1,9 +1,12 @@
 <resources>
-    <string name="app_name">frequencymusicplayer</string>
+    <string name="app_name">Frequency Music Player</string>
 
-    <string name="title_section1">Section 1</string>
-    <string name="title_section2">Section 2</string>
-    <string name="title_section3">Section 3</string>
+    <string name="title_song_section">Songs</string>
+    <string name="title_artist_section">Artists</string>
+    <string name="title_album_section">Albums</string>
+    <string name="title_playlist_section">Playlists</string>
+    <string name="unknown_value">Unknown</string>
+    <string name="zero_value">0</string>
 
     <string name="hello_world">Hello world!</string>
 
