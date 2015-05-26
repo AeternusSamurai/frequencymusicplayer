@@ -1,19 +1,75 @@
-<android.support.v4.view.ViewPager xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:id="@+id/pager"
-    android:layout_width="fill_parent" android:layout_height="fill_parent"
-    tools:context=".MainActivity"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:id="@+id/main_screen"
     android:background="@drawable/fmp_bkgnd_v3">
 
-    <android.support.v4.view.PagerTabStrip
-        android:id="@+id/pager_tab_strip"
+    <android.support.v4.view.ViewPager
+        android:id="@+id/pager"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        tools:context=".MainActivity"
+        android:layout_above="@+id/main_screen_curent_song_container">
+
+        <android.support.v4.view.PagerTabStrip
+            android:id="@+id/pager_tab_strip"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top"
+            android:background="@drawable/pager_strip_background"
+            android:paddingBottom="4dp"
+            android:paddingTop="4dp"
+            android:textColor="#fff" />
+
+
+    </android.support.v4.view.ViewPager>
+
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="top"
-        android:background="@drawable/pager_strip_background"
-        android:textColor="#fff"
-        android:paddingTop="4dp"
-        android:paddingBottom="4dp"
-        />
+        android:id="@+id/main_screen_curent_song_container"
+        android:layout_alignParentBottom="true">
 
+        <ImageView
+            android:layout_width="65dp"
+            android:layout_height="65dp"
+            android:id="@+id/ms_csc_song_image"
+            android:src="@drawable/no_album_image_v2" />
 
-</android.support.v4.view.ViewPager>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/unknown_value"
+            android:id="@+id/ms_csc_song_title"
+            android:lines="1"
+            android:textSize="18dp"
+            android:ellipsize="end"
+            android:layout_toRightOf="@+id/ms_csc_song_image"
+            android:textStyle="bold"
+            android:layout_toLeftOf="@+id/ms_csc_play_pause_button" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/unknown_value"
+            android:id="@+id/ms_csc_song_artist"
+            android:layout_toRightOf="@+id/ms_csc_song_image"
+            android:layout_below="@+id/ms_csc_song_title"
+            android:textSize="16dp"
+            android:layout_toLeftOf="@+id/ms_csc_play_pause_button" />
+
+        <ToggleButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="New ToggleButton"
+            android:id="@+id/ms_csc_play_pause_button"
+            android:textOff=" "
+            android:textOn=" "
+            android:layout_alignTop="@+id/ms_csc_song_image"
+            android:layout_alignBottom="@+id/ms_csc_song_image"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/ic_play_pause"
+            android:checked="false" />
+    </RelativeLayout>
+</RelativeLayout>

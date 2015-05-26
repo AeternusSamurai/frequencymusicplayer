@@ -32,9 +32,11 @@ public class EnhancedSimpleCursorAdapter extends SimpleCursorAdapter {
     private ViewBinder mViewBinder;
 
     private Bitmap placeHolder;
+    private int screen_size;
 
-    public EnhancedSimpleCursorAdapter(Context context, int layout, Cursor c, String[] from, int[] to, int flags){
+    public EnhancedSimpleCursorAdapter(Context context, int layout, Cursor c, String[] from, int[] to, int flags, int screen_size){
         super(context,layout,c,from,to,flags);
+        this.screen_size = screen_size;
     }
 
     @Override
@@ -59,13 +61,15 @@ public class EnhancedSimpleCursorAdapter extends SimpleCursorAdapter {
                         if(to[i] == R.id.cursor_album_layout_album_image){
                             text = ""+DEFAUULT_IMAGE_RESOURCE;
                         }
-                    }else if(text.equals("<unknown>")){
-                        text = DEFAULT_UNKNOWN_VALUE;
+//                    }else if(text.equals("<unknown>")){
+//                        text = DEFAULT_UNKNOWN_VALUE;
                     }
 
                     if (v instanceof TextView){
                         setViewText((TextView) v, text);
                     } else if (v instanceof ImageView){
+                        ((ImageView)v).getLayoutParams().height = screen_size/3;
+                        ((ImageView)v).getLayoutParams().width = screen_size/3;
                         setViewImage((ImageView) v, text);
                     } else {
                         throw new IllegalStateException(v.getClass().getName() + " is not a view that can be bound by this EnhancedSimpleCursorAdapter");
@@ -168,7 +172,7 @@ public class EnhancedSimpleCursorAdapter extends SimpleCursorAdapter {
             byte[] art = meta.getEmbeddedPicture();
             meta.release();
             if(art != null){
-                return decodeSampledByteArray(art, 100, 100);
+                return decodeSampledByteArray(art, screen_size/3, screen_size/3);
             }
             return null;
         }

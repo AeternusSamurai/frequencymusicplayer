@@ -3,19 +3,23 @@ package me.aeternussamurai.frequencymusicplayer.managers;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public abstract class Manager<T, K, S> {
-	protected HashMap<T, K> list;
+import me.aeternussamurai.frequencymusicplayer.Playlist;
+import me.aeternussamurai.frequencymusicplayer.Song;
 
-	public abstract HashMap<T, K> getList();
+public interface Manager {
+
+	public ArrayList<Song> getSongs();
 	
-	public abstract ArrayList<T> getManagerTags();
-	
-	public abstract K getItemByTag(T tag);
-	
-	public abstract void add(S s);
-	
-	public boolean isEmpty(){
-		return list.isEmpty();
-	}
+	public ArrayList<Song> getSongsByAlbum(String album);
+
+	public ArrayList<Song> getSongsByArtist(String artist);
+
+	public Playlist getSongsByPlaylist(String playlist);
+
+	public void addSong(Song song);
+
+	public void addPlaylist(Playlist playlist);
+
+    public void updatePlaylist(Playlist playlist);
 	
 }

@@ -16,35 +16,12 @@ import me.aeternussamurai.frequencymusicplayer.Song;
  */
 public class MusicManager {
 
-    private SongManager songManager;
-    private ArtistManager artistManager;
-    private AlbumManager albumManager;
-    private PlaylistManager playlistManager;
+
     private ContentResolver contentResolver;
 
     public MusicManager(ContentResolver cr) {
-        songManager = new SongManager();
-        artistManager = new ArtistManager();
-        albumManager = new AlbumManager();
-        playlistManager = new PlaylistManager();
-        contentResolver = cr;
-    }
 
-    /**
-     * Get a list of songs from one of the built in managers based on a given key and optional tag.
-     *
-     * @param key The key from which to pull the list of songs from.
-     * @param tag The flag for which manager to get the song lists from. A value of 0 pulls the total list of songs from the Song Manager.
-     * @return
-     */
-    public ArrayList<Song> getSongList(String key, int tag) {
-        if (tag == 1)
-            return artistManager.getItemByTag(key);
-        if (tag == 2)
-            return albumManager.getItemByTag(key);
-        if (tag == 3)
-            return playlistManager.getItemByTag(key).getList();
-        return songManager.getSongs();
+        contentResolver = cr;
     }
 
     private class DataRetriverTask extends AsyncTask<Void, Void, Void> {
@@ -123,11 +100,7 @@ public class MusicManager {
                 }
 
                 Song temp = new Song(songID, songTitle, songArtist, songAlbum, songPath, songDuration, track, composer, genre);
-                //Add song to the managers
-                songManager.add(temp);
-                artistManager.add(temp);
-                albumManager.add(temp);
-                playlistManager.add(temp);
+                //Add song to the manager
 
 
             } while (musicCursor.moveToNext());
@@ -198,7 +171,6 @@ public class MusicManager {
                 }while(playlistMembers.moveToNext());
             }
             playlistMembers.close();
-            playlistManager.add(playlist);
 
 
         }while (playlistCursor.moveToNext());
