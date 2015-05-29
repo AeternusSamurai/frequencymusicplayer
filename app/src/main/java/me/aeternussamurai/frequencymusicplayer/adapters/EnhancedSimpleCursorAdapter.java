@@ -33,10 +33,12 @@ public class EnhancedSimpleCursorAdapter extends SimpleCursorAdapter {
 
     private Bitmap placeHolder;
     private int screen_size;
+    private int image_division;
 
-    public EnhancedSimpleCursorAdapter(Context context, int layout, Cursor c, String[] from, int[] to, int flags, int screen_size){
+    public EnhancedSimpleCursorAdapter(Context context, int layout, Cursor c, String[] from, int[] to, int flags, int screen_size, int image_division){
         super(context,layout,c,from,to,flags);
         this.screen_size = screen_size;
+        this.image_division = image_division;
     }
 
     @Override
@@ -172,7 +174,7 @@ public class EnhancedSimpleCursorAdapter extends SimpleCursorAdapter {
             byte[] art = meta.getEmbeddedPicture();
             meta.release();
             if(art != null){
-                return decodeSampledByteArray(art, screen_size/3, screen_size/3);
+                return decodeSampledByteArray(art, screen_size/image_division, screen_size/image_division);
             }
             return null;
         }

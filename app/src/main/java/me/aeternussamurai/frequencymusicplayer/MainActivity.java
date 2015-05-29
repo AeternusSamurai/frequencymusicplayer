@@ -11,6 +11,7 @@ import android.support.v4.view.ViewPager;
 import android.view.Display;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.Surface;
 import android.widget.ImageView;
 import android.widget.ToggleButton;
 
@@ -29,6 +30,8 @@ public class MainActivity extends FragmentActivity {
      * The {@link ViewPager} that will host the section contents.
      */
     ViewPager mViewPager;
+    private int image_division;
+    private int album_image_division;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +42,7 @@ public class MainActivity extends FragmentActivity {
 
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
-        mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager(), getApplicationContext(), screen_size);
+        mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager(), getApplicationContext(), screen_size, album_image_division);
 
         // Set up the ViewPager with the sections adapter.
         mViewPager = (ViewPager) findViewById(R.id.pager);
@@ -51,18 +54,25 @@ public class MainActivity extends FragmentActivity {
         Display ds = getWindowManager().getDefaultDisplay();
         Point pt = new Point();
         ds.getSize(pt);
+        if(ds.getRotation() == Surface.ROTATION_90 || ds.getRotation() == Surface.ROTATION_270){
+            image_division = 14;
+            album_image_division = 4;
+        }else{
+            image_division = 7;
+            album_image_division = 3;
+        }
         return pt.x;
     }
 
     private void setUpCurrentSongContainer(int screen_size){
         // set the sizes of the imageview and the toggle button so that they fit well within the screen
         ImageView album_image = (ImageView) findViewById(R.id.ms_csc_song_image);
-        album_image.getLayoutParams().height = screen_size/6;
-        album_image.getLayoutParams().width = screen_size/6;
+        album_image.getLayoutParams().height = screen_size/image_division;
+        album_image.getLayoutParams().width = screen_size/image_division;
 
         ToggleButton play_pause_button = (ToggleButton) findViewById(R.id.ms_csc_play_pause_button);
-        play_pause_button.getLayoutParams().height = screen_size/6;
-        play_pause_button.getLayoutParams().width = screen_size/6;
+        play_pause_button.getLayoutParams().height = screen_size/image_division;
+        play_pause_button.getLayoutParams().width = screen_size/image_division;
     }
 
 

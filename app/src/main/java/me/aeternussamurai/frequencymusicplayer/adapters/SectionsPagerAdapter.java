@@ -23,11 +23,13 @@ public class SectionsPagerAdapter extends FragmentStatePagerAdapter{
 
     private Context context;
     private int screen_size;
+    private int image_division;
 
-    public SectionsPagerAdapter(FragmentManager fm, Context c, int screen_size){
+    public SectionsPagerAdapter(FragmentManager fm, Context c, int screen_size, int image_division){
         super(fm);
         context = c;
         this.screen_size = screen_size;
+        this.image_division = image_division;
     }
 
     @Override
@@ -72,7 +74,7 @@ public class SectionsPagerAdapter extends FragmentStatePagerAdapter{
             views = new int[]{R.id.cursor_song_layout_ID, R.id.cursor_song_layout_album, R.id.cursor_song_layout_artist, R.id.cursor_song_layout_title};
         }
         Cursor cursor = cr.query(target,projection,null,null,sortOrder);
-        EnhancedSimpleCursorAdapter adapter = new EnhancedSimpleCursorAdapter(context, layout, cursor, projection, views, 2, screen_size);
+        EnhancedSimpleCursorAdapter adapter = new EnhancedSimpleCursorAdapter(context, layout, cursor, projection, views, 2, screen_size, image_division);
         frag.setAdapter(adapter);
         return frag;
 

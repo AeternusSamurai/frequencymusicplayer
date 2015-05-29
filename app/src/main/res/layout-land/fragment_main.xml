@@ -29,7 +29,7 @@
         android:visibility="invisible"
         android:numColumns="3"
         android:drawSelectorOnTop="true"
-        android:horizontalSpacing="0dp"
-        android:verticalSpacing="0dp" />
+        android:verticalSpacing="0dp"
+        android:horizontalSpacing="0dp" />
 
 </RelativeLayout>
