@@ -70,8 +70,8 @@ public class EnhancedSimpleCursorAdapter extends SimpleCursorAdapter {
                     if (v instanceof TextView){
                         setViewText((TextView) v, text);
                     } else if (v instanceof ImageView){
-                        ((ImageView)v).getLayoutParams().height = screen_size/3;
-                        ((ImageView)v).getLayoutParams().width = screen_size/3;
+                        v.getLayoutParams().height = screen_size/image_division;
+                        v.getLayoutParams().width = screen_size/image_division;
                         setViewImage((ImageView) v, text);
                     } else {
                         throw new IllegalStateException(v.getClass().getName() + " is not a view that can be bound by this EnhancedSimpleCursorAdapter");
@@ -84,14 +84,14 @@ public class EnhancedSimpleCursorAdapter extends SimpleCursorAdapter {
 
     @Override
     public void setViewImage(ImageView v, String value){
-        try{
-            v.setImageResource(Integer.parseInt(value));
-        }catch (NumberFormatException e){
-            v.setImageURI(Uri.parse(value));
-        }
-        // Even after trying to resolve the Resource ID and the Uri of the album image
-        // Create an AsyncTask to pull an image from the first song of the album
-        if(v.getDrawable() == null){
+//        try{
+//            v.setImageResource(Integer.parseInt(value));
+//        }catch (NumberFormatException e){
+//            v.setImageURI(Uri.parse(value));
+//        }
+//        // Even after trying to resolve the Resource ID and the Uri of the album image
+//        // Create an AsyncTask to pull an image from the first song of the album
+//        if(v.getDrawable() == null){
             Cursor tempCursor = mContext.getContentResolver().query(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI, new String[]{MediaStore.Audio.Media.DATA}, MediaStore.Audio.Media.ALBUM_ID + " = ?", new String[]{mCursor.getString(mFrom[0])}, null);
             if(tempCursor.moveToFirst()) {
                 int pathCol = tempCursor.getColumnIndex(MediaStore.Audio.Media.DATA);
@@ -102,7 +102,7 @@ public class EnhancedSimpleCursorAdapter extends SimpleCursorAdapter {
                 // All else fricking failed, so just set the ImageView to the default image
                 v.setImageResource(DEFAUULT_IMAGE_RESOURCE);
             }
-        }
+//        }
     }
 
     private void loadBitmapImage(String albummPath, ImageView albumImage){

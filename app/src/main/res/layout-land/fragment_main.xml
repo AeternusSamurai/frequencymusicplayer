@@ -27,7 +27,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/album_grid"
         android:visibility="invisible"
-        android:numColumns="3"
+        android:numColumns="4"
         android:drawSelectorOnTop="true"
         android:verticalSpacing="0dp"
         android:horizontalSpacing="0dp" />

@@ -3,22 +3,28 @@ package me.aeternussamurai.frequencymusicplayer;
 import java.util.Locale;
 
 
+import android.gesture.Gesture;
 import android.graphics.Point;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.Display;
+import android.view.GestureDetector;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.Surface;
+import android.view.View;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.ToggleButton;
 
 import me.aeternussamurai.frequencymusicplayer.adapters.SectionsPagerAdapter;
 
 
-public class MainActivity extends FragmentActivity {
+public class MainActivity extends FragmentActivity implements GestureDetector.OnGestureListener {
 
     /**
      * The {@link FragmentStatePagerAdapter} that will provide
@@ -33,6 +39,8 @@ public class MainActivity extends FragmentActivity {
     private int image_division;
     private int album_image_division;
 
+    private GestureDetector detector;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,11 +50,14 @@ public class MainActivity extends FragmentActivity {
 
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
-        mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager(), getApplicationContext(), screen_size, album_image_division);
+        mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager(), getApplicationContext());
 
         // Set up the ViewPager with the sections adapter.
         mViewPager = (ViewPager) findViewById(R.id.pager);
         mViewPager.setAdapter(mSectionsPagerAdapter);
+
+        RelativeLayout curSongLayout = (RelativeLayout)findViewById(R.id.main_screen_curent_song_container);
+        detector = new GestureDetector(this,this);
 
     }
 
@@ -96,5 +107,41 @@ public class MainActivity extends FragmentActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    // do nothing for now on onDown, onShowPress, onSingleTapUp, onScroll, onLongPress
+    @Override
+    public boolean onDown(MotionEvent e) {
+        Log.d("FMP_GESTURE_TEST", "onDown: " + e.toString());
+        return true;
+    }
+
+    @Override
+    public void onShowPress(MotionEvent e) {
+        Log.d("FMP_GESTURE_TEST", "onShowPress: " + e.toString());
+    }
+
+    @Override
+    public boolean onSingleTapUp(MotionEvent e) {
+        Log.d("FMP_GESTURE_TEST", "onSingleTapUp: " + e.toString());
+        return false;
+    }
+
+    @Override
+    public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {
+        Log.d("FMP_GESTURE_TEST", "onScroll: " + e1.toString() + e2.toString());
+        return false;
+    }
+
+    @Override
+    public void onLongPress(MotionEvent e) {
+        Log.d("FMP_GESTURE_TEST", "onLongPress" + e.toString());
+    }
+
+    // Determine which direction the gesture is going
+    @Override
+    public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
+        Log.d("FMP_GESTURE_TEST", "onFling: " + e1.toString() + e2.toString());
+        return false;
     }
 }
