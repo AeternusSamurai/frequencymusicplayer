@@ -79,4 +79,10 @@
             android:background="@drawable/ic_play_pause"
             android:checked="false" />
     </RelativeLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/extras_container"
+        android:visibility="gone"></FrameLayout>
 </RelativeLayout>

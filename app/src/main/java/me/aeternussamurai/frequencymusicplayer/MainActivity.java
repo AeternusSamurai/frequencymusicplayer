@@ -3,8 +3,9 @@ package me.aeternussamurai.frequencymusicplayer;
 import java.util.Locale;
 
 
-import android.gesture.Gesture;
+import android.app.FragmentManager;
 import android.graphics.Point;
+import android.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.os.Bundle;
@@ -12,16 +13,19 @@ import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.Display;
 import android.view.GestureDetector;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.Surface;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.ToggleButton;
 
 import me.aeternussamurai.frequencymusicplayer.adapters.SectionsPagerAdapter;
+import me.aeternussamurai.frequencymusicplayer.fragments.CurrentSongExtraFragment;
 
 
 public class MainActivity extends FragmentActivity implements GestureDetector.OnGestureListener {
@@ -37,7 +41,7 @@ public class MainActivity extends FragmentActivity implements GestureDetector.On
      */
     ViewPager mViewPager;
     private int image_division;
-    private int album_image_division;
+    private boolean extrasVisible;
 
     private GestureDetector detector;
 
@@ -56,8 +60,15 @@ public class MainActivity extends FragmentActivity implements GestureDetector.On
         mViewPager = (ViewPager) findViewById(R.id.pager);
         mViewPager.setAdapter(mSectionsPagerAdapter);
 
-        RelativeLayout curSongLayout = (RelativeLayout)findViewById(R.id.main_screen_curent_song_container);
         detector = new GestureDetector(this,this);
+        RelativeLayout curSongLayout = (RelativeLayout)findViewById(R.id.main_screen_curent_song_container);
+        curSongLayout.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                boolean result = detector.onTouchEvent(event);
+                return result;
+            }
+        });
 
     }
 
@@ -67,10 +78,8 @@ public class MainActivity extends FragmentActivity implements GestureDetector.On
         ds.getSize(pt);
         if(ds.getRotation() == Surface.ROTATION_90 || ds.getRotation() == Surface.ROTATION_270){
             image_division = 14;
-            album_image_division = 4;
         }else{
             image_division = 7;
-            album_image_division = 3;
         }
         return pt.x;
     }
@@ -86,6 +95,10 @@ public class MainActivity extends FragmentActivity implements GestureDetector.On
         play_pause_button.getLayoutParams().width = screen_size/image_division;
     }
 
+    @Override
+    public void onStart(){
+        super.onStart();
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -121,6 +134,7 @@ public class MainActivity extends FragmentActivity implements GestureDetector.On
         Log.d("FMP_GESTURE_TEST", "onShowPress: " + e.toString());
     }
 
+    // Use this method to handle the change to the NowPlaying Activity
     @Override
     public boolean onSingleTapUp(MotionEvent e) {
         Log.d("FMP_GESTURE_TEST", "onSingleTapUp: " + e.toString());
@@ -142,6 +156,31 @@ public class MainActivity extends FragmentActivity implements GestureDetector.On
     @Override
     public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
         Log.d("FMP_GESTURE_TEST", "onFling: " + e1.toString() + e2.toString());
-        return false;
+        // if the change in y is greater than the change in x
+        // if the first event's y is less than the second event's y
+        // otherwise return false
+        boolean result;
+        float deltaX = Math.abs(e1.getX() - e2.getX());
+        float deltaY = Math.abs(e1.getY() - e2.getY());
+        if(deltaY > deltaX){
+            if(e1.getY() > e2.getY()){
+                // from the bottom to the top
+                result = true;
+                findViewById(R.id.extras_container).setVisibility(View.VISIBLE);
+                //do the slide view thing
+                getFragmentManager().beginTransaction()
+                        .setCustomAnimations(R.animator.slide_up, R.animator.slide_down, R.animator.slide_up, R.animator.slide_down)
+                        .add(R.id.extras_container, Fragment.instantiate(getApplicationContext(), CurrentSongExtraFragment.class.getName()), "extra")
+                        .addToBackStack(null).commit();
+            }else{
+                // from the top to the bottom
+//                getFragmentManager().popBackStack();
+                result = false;
+            }
+        }else{
+            // Not a vertical swipe.
+            result = false;
+        }
+        return result;
     }
 }

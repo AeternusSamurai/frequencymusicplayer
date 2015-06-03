@@ -31,8 +31,6 @@ public class ListMenusFragment extends Fragment {
     private EnhancedSimpleCursorAdapter adapter;
     private GridView grid;
     private ListView list;
-    private int image_division;
-    private int screen_size;
 
     public static ListMenusFragment newInstance(int sectionNumber){
         ListMenusFragment fragment = new ListMenusFragment();

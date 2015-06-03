@@ -1,14 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent">
+<me.aeternussamurai.frequencymusicplayer.view.SlidingRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:paddingLeft="@dimen/activity_vertical_margin"
+    android:paddingTop="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_horizontal_margin"
+    android:id="@+id/cse_slide_layout">
 
     <ImageView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/cse_song_album_image"
         android:src="@drawable/no_album_image_v2"
         android:layout_centerHorizontal="true"
-        android:layout_alignParentBottom="true" />
+        android:layout_alignParentBottom="true"
+        android:background="@android:color/background_dark" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -20,7 +26,8 @@
         android:background="@android:color/background_dark"
         android:textStyle="bold"
         android:layout_above="@+id/cse_song_artist"
-        android:layout_toLeftOf="@+id/cse_play_pause_button" />
+        android:layout_toLeftOf="@+id/cse_play_pause_button"
+        android:layout_marginRight="6dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -30,7 +37,8 @@
         android:layout_above="@+id/cse_song_album"
         android:layout_alignLeft="@+id/cse_song_album_image"
         android:textSize="18dp"
-        android:layout_toLeftOf="@+id/cse_play_pause_button" />
+        android:layout_toLeftOf="@+id/cse_play_pause_button"
+        android:layout_marginRight="6dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -40,7 +48,8 @@
         android:textSize="18dp"
         android:layout_alignBottom="@+id/cse_song_album_image"
         android:layout_alignLeft="@+id/cse_song_album_image"
-        android:layout_toLeftOf="@+id/cse_play_pause_button" />
+        android:layout_toLeftOf="@+id/cse_play_pause_button"
+        android:layout_marginRight="6dp" />
 
     <ToggleButton
         android:layout_width="wrap_content"
@@ -51,7 +60,9 @@
         android:textOff=" "
         android:textOn=" "
         android:background="@drawable/ic_play_pause"
-        android:layout_toLeftOf="@+id/cse_play_next_song_button" />
+        android:layout_toLeftOf="@+id/cse_play_next_song_button"
+        android:layout_marginRight="6dp"
+        android:layout_marginLeft="6dp" />
 
     <ImageButton
         android:layout_width="wrap_content"
@@ -61,5 +72,6 @@
         android:layout_alignBottom="@+id/cse_song_album_image"
         android:layout_alignTop="@+id/cse_song_title"
         android:src="@drawable/next_song"
-        android:background="@android:color/transparent" />
-</RelativeLayout>
+        android:background="@android:color/transparent"
+        android:layout_marginLeft="6dp" />
+</me.aeternussamurai.frequencymusicplayer.view.SlidingRelativeLayout>
