@@ -7,16 +7,22 @@ import android.os.AsyncTask;
 import android.provider.MediaStore;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
+import me.aeternussamurai.frequencymusicplayer.FrequencyPlaylist;
 import me.aeternussamurai.frequencymusicplayer.Playlist;
 import me.aeternussamurai.frequencymusicplayer.Song;
+import me.aeternussamurai.frequencymusicplayer.model.FrequencyPlayListInfo;
+import me.aeternussamurai.frequencymusicplayer.model.PlayListInfo;
 
 /**
  * Created by Chase on 2/26/2015.
  */
 public class MusicManager {
 
-
+    private HashMap<Integer, ArrayList<Song>> manager; //Don't know what this is, yet...
+    private HashMap<PlayListInfo, ArrayList<Long>> playlists;
+    //private HashMap<FrequencyPlayListInfo, FrequencyPlaylist> freqPlaylists; //TODO to implement at a later date
     private ContentResolver contentResolver;
 
     public MusicManager(ContentResolver cr) {
@@ -120,7 +126,7 @@ public class MusicManager {
         Cursor playlistCursor = null;
         //get internal playllists if any
         // It seems that a table for any internally stored playlists doesn't exist.
-        // Maybe able to resolve this by saving to (thus creating) an internally storage table
+        // Maybe able to resolve this by saving to (thus creating) an internally stored table
         Uri interanlPlaylistUri = MediaStore.Audio.Playlists.INTERNAL_CONTENT_URI;
         try{
             playlistCursor = contentResolver.query(interanlPlaylistUri, projection, null, null, null);
@@ -148,7 +154,6 @@ public class MusicManager {
      * @param playlistCursor The cursor that contains that information to the playlist table in the provider.
      * @param storage The string that defines where the information comes from internal storage or external storage.
      */
-    //TODO Adjust the playlist manager to reflect dymanic adding of SONGS (not playLists) to the manager.
     private void getPlaylistInfo(ContentResolver playlistResolver, Cursor playlistCursor, String storage){
         int idCol = playlistCursor.getColumnIndex(MediaStore.Audio.Playlists._ID);
         int nameCol = playlistCursor.getColumnIndex(MediaStore.Audio.Playlists.NAME);
@@ -158,7 +163,12 @@ public class MusicManager {
             long playlistID = playlistCursor.getLong(idCol);
             String playListName = playlistCursor.getString(nameCol);
             String playListPath = playlistCursor.getString(dataCol);
-            Playlist playlist = new Playlist(playlistID, playListName, playListPath);
+            //Playlist playlist = new Playlist(playlistID, playListName, playListPath);
+            PlayListInfo info = new PlayListInfo(playlistID, playListName, playListPath);
+
+            if(!playlists.containsKey(info)){
+                playlists.put(info, new ArrayList<Long>());
+            }
 
             // find all of the songs by ID that go in the playlist
             Uri membersUri = MediaStore.Audio.Playlists.Members.getContentUri(storage, playlistID);
@@ -167,7 +177,7 @@ public class MusicManager {
                 int audioIdCol = playlistMembers.getColumnIndex(MediaStore.Audio.Playlists.Members.AUDIO_ID);
                 do{
                     long songId = playlistMembers.getLong(audioIdCol);
-                    playlist.add(songId);
+                    playlists.get(info).add(songId);
                 }while(playlistMembers.moveToNext());
             }
             playlistMembers.close();

@@ -2,6 +2,7 @@ package me.aeternussamurai.frequencymusicplayer.fragments;
 
 import android.os.Bundle;
 import android.app.Fragment;
+import android.util.Log;
 import android.view.GestureDetector;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -36,31 +37,37 @@ public class CurrentSongExtraFragment extends Fragment implements GestureDetecto
 
     @Override
     public boolean onDown(MotionEvent e) {
+        Log.d("FMP_GESTURE_TEST", "onDown: " + e.toString());
         return true;
     }
 
     @Override
     public void onShowPress(MotionEvent e) {
-
+        Log.d("FMP_GESTURE_TEST", "onShowPress: " + e.toString());
     }
 
     @Override
     public boolean onSingleTapUp(MotionEvent e) {
+        //TODO add in logic to determine where on the screen the user clicked. It should only "close" the extras view when the user doesn't tap on the extras view.
+        getFragmentManager().popBackStack();
+        Log.d("FMP_GESTURE_TEST", "onSingleTapUp: " + e.toString());
         return false;
     }
 
     @Override
     public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {
+        Log.d("FMP_GESTURE_TEST", "onScroll: " + e1.toString() + e2.toString());
         return false;
     }
 
     @Override
     public void onLongPress(MotionEvent e) {
-
+        Log.d("FMP_GESTURE_TEST", "onLongPress" + e.toString());
     }
 
     @Override
     public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
+        Log.d("FMP_GESTURE_TEST", "onFling: " + e1.toString() + e2.toString());
         boolean result;
         float deltaX = Math.abs(e1.getX() - e2.getX());
         float deltaY = Math.abs(e1.getY() - e2.getY());

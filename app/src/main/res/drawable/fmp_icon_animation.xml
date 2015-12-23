@@ -10,4 +10,7 @@
     <item android:drawable="@drawable/fmp_icon_animated_7" android:duration="125"/>
     <item android:drawable="@drawable/fmp_icon_animated_8" android:duration="125"/>
     <item android:drawable="@drawable/fmp_icon_animated_9" android:duration="125"/>
+    <item android:drawable="@drawable/fmp_icon_animated_10" android:duration="125"/>
+    <item android:drawable="@drawable/fmp_icon_animated_11" android:duration="125"/>
+    <item android:drawable="@drawable/fmp_icon_animated_12" android:duration="125"/>
 </animation-list>

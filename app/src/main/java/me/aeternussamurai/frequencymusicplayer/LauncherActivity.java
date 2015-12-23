@@ -23,9 +23,7 @@ public class LauncherActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_launcher);
 
-        ImageView animatedImage = (ImageView) findViewById(R.id.fmp_icon_image_animation);
-        animatedImage.setBackgroundResource(R.drawable.fmp_icon_animation);
-        fmpIconAnimation = (AnimationDrawable) animatedImage.getBackground();
+
 
     }
 
@@ -33,6 +31,9 @@ public class LauncherActivity extends Activity {
     public void onStart(){
 
         super.onStart();
+        ImageView animatedImage = (ImageView) findViewById(R.id.fmp_icon_image_animation);
+        animatedImage.setBackgroundResource(R.drawable.fmp_icon_animation);
+        fmpIconAnimation = (AnimationDrawable) animatedImage.getBackground();
     }
 
     @Override

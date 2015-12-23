@@ -52,7 +52,7 @@ public class MainActivity extends FragmentActivity implements GestureDetector.On
         int screen_size = getDeviceScreenSize();
         setUpCurrentSongContainer(screen_size);
 
-        // Create the adapter that will return a fragment for each of the three
+        // Create the adapter that will return a fragment for each of the four
         // primary sections of the activity.
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager(), getApplicationContext());
 
@@ -72,6 +72,10 @@ public class MainActivity extends FragmentActivity implements GestureDetector.On
 
     }
 
+    /**
+     * Get the size of the screen of the device
+     * @return the size of the screen
+     */
     private int getDeviceScreenSize() {
         Display ds = getWindowManager().getDefaultDisplay();
         Point pt = new Point();
@@ -126,6 +130,9 @@ public class MainActivity extends FragmentActivity implements GestureDetector.On
     @Override
     public boolean onDown(MotionEvent e) {
         Log.d("FMP_GESTURE_TEST", "onDown: " + e.toString());
+        if(extrasVisible){
+
+        }
         return true;
     }
 
@@ -166,6 +173,7 @@ public class MainActivity extends FragmentActivity implements GestureDetector.On
             if(e1.getY() > e2.getY()){
                 // from the bottom to the top
                 result = true;
+                extrasVisible = true;
                 findViewById(R.id.extras_container).setVisibility(View.VISIBLE);
                 //do the slide view thing
                 getFragmentManager().beginTransaction()
@@ -174,7 +182,7 @@ public class MainActivity extends FragmentActivity implements GestureDetector.On
                         .addToBackStack(null).commit();
             }else{
                 // from the top to the bottom
-//                getFragmentManager().popBackStack();
+                getFragmentManager().popBackStack();
                 result = false;
             }
         }else{
