@@ -20,14 +20,36 @@ import me.aeternussamurai.frequencymusicplayer.model.PlayListInfo;
  */
 public class MusicManager {
 
-    private HashMap<Integer, ArrayList<Song>> manager; //Don't know what this is, yet...
+    // Variables for lists currently playing
+    private ArrayList<Long> nowPlaying;
+    private ArrayList<Long> sortedNowPlaying;
+    private ArrayList<Long> nextNowPlaying;
+
+    // Variables for the NowPlaying screen
+    private Song current;
+    private Song previous;
+    private Song next;
+
     private HashMap<PlayListInfo, ArrayList<Long>> playlists;
     //private HashMap<FrequencyPlayListInfo, FrequencyPlaylist> freqPlaylists; //TODO to implement at a later date
+
+
+
     private ContentResolver contentResolver;
 
     public MusicManager(ContentResolver cr) {
 
         contentResolver = cr;
+    }
+
+    /**
+     * Selects the list of songs to play from the cursor
+     * @param tabID
+     * @param id
+     * @param c
+     */
+    public void makeSelection(int tabID, long id, Cursor c){
+
     }
 
     private class DataRetriverTask extends AsyncTask<Void, Void, Void> {

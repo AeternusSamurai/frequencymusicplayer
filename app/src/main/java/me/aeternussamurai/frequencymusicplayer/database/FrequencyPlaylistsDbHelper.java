@@ -12,7 +12,7 @@ import me.aeternussamurai.frequencymusicplayer.Frequency;
  */
 public class FrequencyPlaylistsDbHelper extends SQLiteOpenHelper {
 
-    public static final int DATABASE_VERSIOM = 1;
+    public static final int DATABASE_VERSION = 1;
     public static final String DATABASE_NAME = "FrequencyPlaylists.db";
 
     public static final String TEXT_TYPE = " TEXT";
@@ -38,7 +38,7 @@ public class FrequencyPlaylistsDbHelper extends SQLiteOpenHelper {
 
 
     public FrequencyPlaylistsDbHelper(Context context){
-        super(context, DATABASE_NAME, null, DATABASE_VERSIOM);
+        super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
     @Override
