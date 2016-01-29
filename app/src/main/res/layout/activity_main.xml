@@ -1,9 +1,38 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:id="@+id/main_screen"
-    android:background="@drawable/fmp_background_v4">
+    android:fitsSystemWindows="true"
+    android:background="@drawable/fmp_background_v4"
+    tools:context="me.aeternussamurai.frequencymusicplayer.MainActivity">
+
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/appbar"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:paddingTop="8dp"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:layout_scrollFlags="scroll|enterAlways"
+            app:popupTheme="@style/AppTheme.PopupOverlay">
+
+        </android.support.v7.widget.Toolbar>
+
+        <android.support.design.widget.TabLayout
+            android:id="@+id/tabs"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:tabMode="fixed"
+            app:tabGravity="fill"/>
+
+    </android.support.design.widget.AppBarLayout>
 
     <android.support.v4.view.ViewPager
         android:id="@+id/pager"
@@ -11,16 +40,6 @@
         android:layout_height="wrap_content"
         tools:context=".MainActivity"
         android:layout_above="@+id/main_screen_curent_song_container">
-
-        <android.support.v4.view.PagerTabStrip
-            android:id="@+id/pager_tab_strip"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="top"
-            android:background="@drawable/pager_strip_background"
-            android:paddingBottom="4dp"
-            android:paddingTop="4dp"
-            android:textColor="#fff" />
 
 
     </android.support.v4.view.ViewPager>
@@ -32,7 +51,9 @@
         android:layout_alignParentBottom="true"
         android:paddingLeft="@dimen/activity_vertical_margin"
         android:paddingRight="@dimen/activity_vertical_margin"
-        android:paddingBottom="@dimen/activity_horizontal_margin">
+        android:paddingBottom="@dimen/activity_horizontal_margin"
+        android:layout_gravity="bottom"
+        android:background="@color/colorPrimary">
 
         <ImageView
             android:layout_width="65dp"
@@ -85,4 +106,4 @@
         android:layout_height="match_parent"
         android:id="@+id/extras_container"
         android:visibility="gone"></FrameLayout>
-</RelativeLayout>
+</android.support.design.widget.CoordinatorLayout>

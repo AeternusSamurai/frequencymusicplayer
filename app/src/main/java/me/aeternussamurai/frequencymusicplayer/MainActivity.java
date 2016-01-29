@@ -6,10 +6,13 @@ import java.util.Locale;
 import android.app.FragmentManager;
 import android.graphics.Point;
 import android.app.Fragment;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Display;
 import android.view.GestureDetector;
@@ -28,7 +31,7 @@ import me.aeternussamurai.frequencymusicplayer.adapters.SectionsPagerAdapter;
 import me.aeternussamurai.frequencymusicplayer.fragments.CurrentSongExtraFragment;
 
 
-public class MainActivity extends FragmentActivity implements GestureDetector.OnGestureListener {
+public class MainActivity extends AppCompatActivity implements GestureDetector.OnGestureListener {
 
     /**
      * The {@link FragmentStatePagerAdapter} that will provide
@@ -40,6 +43,7 @@ public class MainActivity extends FragmentActivity implements GestureDetector.On
      * The {@link ViewPager} that will host the section contents.
      */
     ViewPager mViewPager;
+    TabLayout tabLayout;
     private int image_division;
     private boolean extrasVisible;
 
@@ -52,6 +56,9 @@ public class MainActivity extends FragmentActivity implements GestureDetector.On
         int screen_size = getDeviceScreenSize();
         setUpCurrentSongContainer(screen_size);
 
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
         // Create the adapter that will return a fragment for each of the four
         // primary sections of the activity.
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager(), getApplicationContext());
@@ -59,6 +66,9 @@ public class MainActivity extends FragmentActivity implements GestureDetector.On
         // Set up the ViewPager with the sections adapter.
         mViewPager = (ViewPager) findViewById(R.id.pager);
         mViewPager.setAdapter(mSectionsPagerAdapter);
+
+        tabLayout = (TabLayout) findViewById(R.id.tabs);
+        tabLayout.setupWithViewPager(mViewPager);
 
         detector = new GestureDetector(this,this);
         RelativeLayout curSongLayout = (RelativeLayout)findViewById(R.id.main_screen_curent_song_container);
