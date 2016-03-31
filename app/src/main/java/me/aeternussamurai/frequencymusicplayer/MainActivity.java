@@ -71,7 +71,7 @@ public class MainActivity extends AppCompatActivity implements GestureDetector.O
         tabLayout.setupWithViewPager(mViewPager);
 
         detector = new GestureDetector(this,this);
-        RelativeLayout curSongLayout = (RelativeLayout)findViewById(R.id.main_screen_curent_song_container);
+        Toolbar curSongLayout = (Toolbar)findViewById(R.id.main_screen_curent_song_container);
         curSongLayout.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {

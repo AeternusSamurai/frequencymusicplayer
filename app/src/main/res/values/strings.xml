@@ -15,5 +15,7 @@
     <string name="right_arrow">→</string>
     <string name="left_arrow">←</string>
     <string name="title_activity_selection_">Selection_Activity</string>
+    <string name="title_activity_selection">SelectionActivity</string>
+
 
 </resources>

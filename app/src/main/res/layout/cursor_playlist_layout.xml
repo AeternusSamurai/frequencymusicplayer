@@ -19,7 +19,8 @@
         android:id="@+id/cursor_playlist_layout_playlist"
         android:layout_toRightOf="@+id/playlist_image"
         android:textSize="18dp"
-        android:layout_centerVertical="true" />
+        android:layout_centerVertical="true"
+        android:textColor="#ffffff" />
 
     <TextView
         android:layout_width="wrap_content"

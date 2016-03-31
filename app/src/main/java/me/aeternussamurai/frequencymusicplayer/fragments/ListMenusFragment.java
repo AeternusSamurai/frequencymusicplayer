@@ -8,6 +8,9 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.ListFragment;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.Surface;
@@ -21,6 +24,7 @@ import android.widget.TextView;
 
 import me.aeternussamurai.frequencymusicplayer.R;
 import me.aeternussamurai.frequencymusicplayer.adapters.EnhancedSimpleCursorAdapter;
+import me.aeternussamurai.frequencymusicplayer.adapters.SimpleCursorRecyclerAdapter;
 
 /**
  * Created by Chase on 5/16/2015.
@@ -28,9 +32,8 @@ import me.aeternussamurai.frequencymusicplayer.adapters.EnhancedSimpleCursorAdap
 public class ListMenusFragment extends Fragment {
 
     private static final String ARG_SECTION_NUMBER = "section_number";
-    private EnhancedSimpleCursorAdapter adapter;
-    private GridView grid;
-    private ListView list;
+    private SimpleCursorRecyclerAdapter adapter;
+    private RecyclerView recyclerView;
 
     public static ListMenusFragment newInstance(int sectionNumber){
         ListMenusFragment fragment = new ListMenusFragment();
@@ -45,10 +48,9 @@ public class ListMenusFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
         View rootView = inflater.inflate(R.layout.fragment_main, container,false);
-        list = (ListView)rootView.findViewById(R.id.listing);
-        grid = (GridView) rootView.findViewById(R.id.album_grid);
-        TextView testText = (TextView) rootView.findViewById(R.id.test_text);
-        testText.setText("Section " + this.getArguments().getInt(ARG_SECTION_NUMBER));
+        recyclerView = (RecyclerView)rootView.findViewById(R.id.listing);
+        //TextView testText = (TextView) rootView.findViewById(R.id.test_text);
+        //testText.setText("Section " + this.getArguments().getInt(ARG_SECTION_NUMBER));
         return rootView;
     }
 
@@ -91,20 +93,27 @@ public class ListMenusFragment extends Fragment {
             views = new int[]{R.id.cursor_song_layout_ID, R.id.cursor_song_layout_album, R.id.cursor_song_layout_artist, R.id.cursor_song_layout_title};
         }
         Cursor cursor = cr.query(target,projection,null,null,sortOrder);
-        adapter = new EnhancedSimpleCursorAdapter(getActivity(), layout, cursor, projection, views, 2, getScreenSize(), getImageDivision());
+        adapter = new SimpleCursorRecyclerAdapter(layout, cursor, projection, views, getScreenSize(), getImageDivision(), getActivity());
         //setRetainInstance(true);
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        adapter.getCursor().close();
     }
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState){
         super.onActivityCreated(savedInstanceState);
         if(getArguments().getInt(ARG_SECTION_NUMBER) == 3){
-            list.setVisibility(View.GONE);
-            grid.setVisibility(View.VISIBLE);
-            grid.setAdapter(adapter);
+            // Set the recyclerView to do the grid layout
+            recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 3));
+            recyclerView.setAdapter(adapter);
         } else {
-            grid.setVisibility(View.GONE);
-            list.setAdapter(adapter);
+            // Set the recyclerView to do the linear layout
+            recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+            recyclerView.setAdapter(adapter);
         }
     }
 

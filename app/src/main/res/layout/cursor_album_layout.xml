@@ -39,7 +39,8 @@
         android:singleLine="false"
         android:ellipsize="end"
         android:background="@android:drawable/dark_header"
-        android:maxLines="2" />
+        android:maxLines="2"
+        android:textColor="#ffffff" />
 
     <TextView
         android:layout_width="wrap_content"
