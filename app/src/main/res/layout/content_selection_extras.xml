@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <Button
+        style="?android:attr/borderlessButtonStyle"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:text="@string/shuffle_album"
+        android:id="@+id/shuffle_album_button"
+        android:textSize="10sp"
+        android:drawableLeft="@drawable/ic_shuffle_small" />
+
+    <Button
+        style="?android:attr/borderlessButtonStyle"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:text="@string/shuffle_artist"
+        android:id="@+id/shuffle_artist_button"
+        android:textSize="10sp"
+        android:drawableLeft="@drawable/ic_shuffle_artist_small" />
+
+    <Button
+        style="?android:attr/borderlessButtonStyle"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:text="@string/shuffle_song"
+        android:id="@+id/shuffle_song_button"
+        android:textSize="11sp"
+        android:drawableLeft="@drawable/ic_shuffle_song_small" />
+</LinearLayout>

@@ -7,6 +7,7 @@
     <string name="title_playlist_section">Playlists</string>
     <string name="unknown_value">Unknown</string>
     <string name="zero_value">0</string>
+    <string name="zero_time">0:00</string>
 
     <string name="hello_world">Hello world!</string>
 
@@ -14,8 +15,11 @@
     <string name="title_activity_launcher">LauncherActivity</string>
     <string name="right_arrow">→</string>
     <string name="left_arrow">←</string>
-    <string name="title_activity_selection_">Selection_Activity</string>
     <string name="title_activity_selection">SelectionActivity</string>
+
+    <string name="shuffle_album">Shuffle by Album</string>
+    <string name="shuffle_song">Shuffle by Song</string>
+    <string name="shuffle_artist">Shuffle by Artist</string>
 
 
 </resources>

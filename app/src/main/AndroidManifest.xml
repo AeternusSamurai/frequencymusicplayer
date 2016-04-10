@@ -11,6 +11,11 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
+        <meta-data
+            android:name="me.aeternussamurai.frequencymusicplayer.glide.MusicCoverModule"
+            android:value="GlideModule" />
+
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"

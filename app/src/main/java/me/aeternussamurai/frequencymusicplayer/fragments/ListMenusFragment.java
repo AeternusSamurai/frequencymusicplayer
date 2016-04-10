@@ -25,6 +25,7 @@ import android.widget.TextView;
 import me.aeternussamurai.frequencymusicplayer.R;
 import me.aeternussamurai.frequencymusicplayer.adapters.EnhancedSimpleCursorAdapter;
 import me.aeternussamurai.frequencymusicplayer.adapters.SimpleCursorRecyclerAdapter;
+import me.aeternussamurai.frequencymusicplayer.adapters.WindowTag;
 
 /**
  * Created by Chase on 5/16/2015.
@@ -63,6 +64,7 @@ public class ListMenusFragment extends Fragment {
         String sortOrder;
         int[] views;
         int layout;
+        WindowTag tag;
         if(getArguments().getInt(ARG_SECTION_NUMBER)-1 == 1){
             // Artists Data gathering
             target = MediaStore.Audio.Artists.EXTERNAL_CONTENT_URI;
@@ -70,6 +72,7 @@ public class ListMenusFragment extends Fragment {
             sortOrder = "REPLACE("+MediaStore.Audio.Artists.ARTIST+", '<unknown>', 'Unknown') COLLATE NOCASE";
             layout = R.layout.cursor_artist_layout;
             views = new int[]{R.id.cursor_artist_layout_ID, R.id.cursor_artist_layout_artist, R.id.cursor_artist_layout_numAlbums};
+            tag = WindowTag.ARTIST;
         }else if(getArguments().getInt(ARG_SECTION_NUMBER)-1 == 2){
             // Albums Data gathering
             target = MediaStore.Audio.Albums.EXTERNAL_CONTENT_URI;
@@ -77,6 +80,7 @@ public class ListMenusFragment extends Fragment {
             sortOrder = "REPLACE("+MediaStore.Audio.Albums.ALBUM+", '<unknown>', 'Unknown') COLLATE NOCASE";
             layout = R.layout.cursor_album_layout;
             views = new int[]{R.id.cursor_album_layout_ID, R.id.cursor_album_layout_album, R.id.cursor_album_layout_album_image};
+            tag = WindowTag.ALBUM;
         }else if(getArguments().getInt(ARG_SECTION_NUMBER)-1 == 3){
             // Playlists Data gathering
             target = MediaStore.Audio.Playlists.EXTERNAL_CONTENT_URI;
@@ -84,6 +88,7 @@ public class ListMenusFragment extends Fragment {
             sortOrder = MediaStore.Audio.Playlists.NAME + " COLLATE NOCASE";
             layout = R.layout.cursor_playlist_layout;
             views = new int[]{R.id.cursor_playlist_layout_ID, R.id.cursor_playlist_layout_playlist};
+            tag = WindowTag.PLAYLIST;
         }else{
             // Songs Data gathering, aka i = 0
             target = MediaStore.Audio.Media.EXTERNAL_CONTENT_URI;
@@ -91,9 +96,10 @@ public class ListMenusFragment extends Fragment {
             sortOrder = MediaStore.Audio.Media.TITLE + " COLLATE NOCASE";
             layout = R.layout.cursor_song_layout;
             views = new int[]{R.id.cursor_song_layout_ID, R.id.cursor_song_layout_album, R.id.cursor_song_layout_artist, R.id.cursor_song_layout_title};
+            tag = WindowTag.SONG;
         }
         Cursor cursor = cr.query(target,projection,null,null,sortOrder);
-        adapter = new SimpleCursorRecyclerAdapter(layout, cursor, projection, views, getScreenSize(), getImageDivision(), getActivity());
+        adapter = new SimpleCursorRecyclerAdapter(layout, cursor, projection, views, getScreenSize(), getImageDivision(), getActivity(), tag, Long.valueOf(-1));
         //setRetainInstance(true);
     }
 
