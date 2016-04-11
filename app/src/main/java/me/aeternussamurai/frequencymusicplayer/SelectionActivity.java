@@ -66,7 +66,7 @@ public class SelectionActivity extends AppCompatActivity{
             // Song id, track no., title, artist, duration
             target = MediaStore.Audio.Media.EXTERNAL_CONTENT_URI;
             projection = new String[]{MediaStore.Audio.Media._ID, MediaStore.Audio.Media.TRACK, MediaStore.Audio.Media.TITLE, "REPLACE(" + MediaStore.Audio.Media.ARTIST + ", '<unknown>', 'Unknown')", MediaStore.Audio.Media.DURATION};
-            sortOrder = null;
+            sortOrder = MediaStore.Audio.Media.TRACK;
             layout = R.layout.selection_album_layout;
             views = new int[]{R.id.selection_album_song_id, R.id.selection_album_track_no, R.id.selection_album_song_name, R.id.selection_album_song_artist, R.id.selection_album_song_duration};
             whereSelection = MediaStore.Audio.Media.ALBUM_ID + " = ?";
@@ -80,7 +80,7 @@ public class SelectionActivity extends AppCompatActivity{
             // Album id, name, year, image
             target = MediaStore.Audio.Albums.EXTERNAL_CONTENT_URI;
             projection = new String[]{MediaStore.Audio.Albums._ID, MediaStore.Audio.Albums.ALBUM, MediaStore.Audio.Albums.ALBUM_ART, MediaStore.Audio.Albums.LAST_YEAR};
-            sortOrder = MediaStore.Audio.Albums.ALBUM_KEY;
+            sortOrder = MediaStore.Audio.Albums.ALBUM;
             layout = R.layout.selection_artist_layout;
             views = new int[]{R.id.selection_artist_album_id ,R.id.selection_artist_album_name, R.id.selection_artist_album_image, R.id.selection_artist_album_year};
             whereArgs = getAlbumIDs(selectionID);
@@ -95,7 +95,7 @@ public class SelectionActivity extends AppCompatActivity{
             // Song id, track no., title, artist, duration
             target = MediaStore.Audio.Media.EXTERNAL_CONTENT_URI;
             projection = new String[]{MediaStore.Audio.Media._ID, MediaStore.Audio.Media.TRACK, MediaStore.Audio.Media.TITLE, "REPLACE(" + MediaStore.Audio.Media.ARTIST + ", '<unknown>', 'Unknown')", MediaStore.Audio.Media.DURATION};
-            sortOrder = null;
+            sortOrder = MediaStore.Audio.Media.TRACK;
             layout = R.layout.selection_album_layout;
             views = new int[]{R.id.selection_album_song_id, R.id.selection_album_track_no, R.id.selection_album_song_name, R.id.selection_album_song_artist, R.id.selection_album_song_duration};
             whereSelection = MediaStore.Audio.Media.ALBUM_ID + " = ? AND " + MediaStore.Audio.Media.ARTIST_ID + " = ?";

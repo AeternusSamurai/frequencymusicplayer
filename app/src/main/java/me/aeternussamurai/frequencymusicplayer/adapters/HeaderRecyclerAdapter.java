@@ -44,7 +44,7 @@ public class HeaderRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.Vie
             View v = LayoutInflater.from(context).inflate(R.layout.selection_list_header, parent, false);
             return new HeaderViewHolder(v, tag);
         } else {
-            return baseAdapter.onCreateViewHolder(parent, viewType);
+            return (SimpleCursorRecyclerAdapter.SimpleViewHolder) baseAdapter.onCreateViewHolder(parent, viewType);
         }
     }
 

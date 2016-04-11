@@ -1,71 +1,80 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="?android:attr/selectableItemBackground"
+    android:clickable="true"
+    android:focusable="true">
 
-    <ImageView
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:id="@+id/selection_playlist_album_image"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_margin="4dp"
-        android:src="@drawable/no_album_image_v2" />
-
-    <TextView
-        android:layout_width="wrap_content"
+    <RelativeLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/unknown_value"
-        android:id="@+id/selection_playlist_song_name"
-        android:layout_alignTop="@+id/selection_playlist_album_image"
-        android:layout_toRightOf="@+id/selection_playlist_album_image"
-        android:layout_toEndOf="@+id/selection_playlist_album_image"
-        android:ellipsize="end"
-        android:lines="1"
-        android:maxLines="1"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        android:layout_marginBottom="4dp"
-        android:layout_marginLeft="4dp"
-        android:textColor="#ffffff" />
+        android:orientation="vertical">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/unknown_value"
-        android:id="@+id/selection_playlist_song_artist"
-        android:layout_below="@+id/selection_playlist_song_name"
-        android:layout_toRightOf="@+id/selection_playlist_album_image"
-        android:layout_toEndOf="@+id/selection_playlist_album_image"
-        android:textSize="15dp"
-        android:textStyle="italic"
-        android:layout_marginTop="4dp"
-        android:layout_marginBottom="4dp"
-        android:layout_marginLeft="4dp"
-        android:textColor="#ffffff" />
+        <ImageView
+            android:id="@+id/selection_playlist_album_image"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_margin="4dp"
+            android:src="@drawable/no_album_image_v2" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/zero_time"
-        android:id="@+id/selection_playlist_song_duration"
-        android:layout_alignParentRight="true"
-        android:layout_centerVertical="true"
-        android:layout_marginRight="10dp"
-        android:textColor="#FFFFFF" />
+        <TextView
+            android:id="@+id/selection_playlist_song_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/selection_playlist_album_image"
+            android:layout_marginBottom="4dp"
+            android:layout_marginLeft="4dp"
+            android:layout_toEndOf="@+id/selection_playlist_album_image"
+            android:layout_toRightOf="@+id/selection_playlist_album_image"
+            android:ellipsize="end"
+            android:lines="1"
+            android:maxLines="1"
+            android:text="@string/unknown_value"
+            android:textColor="#ffffff"
+            android:textSize="18sp"
+            android:textStyle="bold" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/selection_playlist_song_id"
-        android:visibility="gone" />
+        <TextView
+            android:id="@+id/selection_playlist_song_artist"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/selection_playlist_song_name"
+            android:layout_marginBottom="4dp"
+            android:layout_marginLeft="4dp"
+            android:layout_marginTop="4dp"
+            android:layout_toEndOf="@+id/selection_playlist_album_image"
+            android:layout_toRightOf="@+id/selection_playlist_album_image"
+            android:text="@string/unknown_value"
+            android:textColor="#ffffff"
+            android:textSize="15dp"
+            android:textStyle="italic" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/selection_playlist_song_id_2"
-        android:layout_alignTop="@+id/selection_playlist_song_name"
-        android:layout_centerHorizontal="true"
-        android:visibility="gone" />
-</RelativeLayout>
+        <TextView
+            android:id="@+id/selection_playlist_song_duration"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:text="@string/zero_time"
+            android:textColor="#FFFFFF" />
+
+        <TextView
+            android:id="@+id/selection_playlist_song_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/selection_playlist_song_id_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/selection_playlist_song_name"
+            android:layout_centerHorizontal="true"
+            android:visibility="gone" />
+    </RelativeLayout>
+</FrameLayout>

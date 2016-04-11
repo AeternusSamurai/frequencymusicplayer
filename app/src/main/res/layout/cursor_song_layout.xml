@@ -1,52 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="?android:attr/selectableItemBackground"
+    android:clickable="true"
+    android:focusable="true">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <RelativeLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/unknown_value"
-        android:id="@+id/cursor_song_layout_title"
-        android:ellipsize="end"
-        android:textSize="18dp"
-        android:singleLine="true"
-        android:textStyle="bold"
-        android:layout_marginLeft="6dp"
-        android:layout_marginBottom="3dp"
-        android:paddingTop="6dp"
-        android:textColor="#ffffff" />
+        android:orientation="vertical">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/unknown_value"
-        android:id="@+id/cursor_song_layout_artist"
-        android:singleLine="true"
-        android:textSize="16dp"
-        android:ellipsize="end"
-        android:layout_below="@+id/cursor_song_layout_title"
-        android:layout_marginLeft="6dp"
-        android:layout_marginBottom="3dp"
-        android:textColor="#ffffff" />
+        <TextView
+            android:id="@+id/cursor_song_layout_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="3dp"
+            android:layout_marginLeft="6dp"
+            android:ellipsize="end"
+            android:paddingTop="6dp"
+            android:singleLine="true"
+            android:text="@string/unknown_value"
+            android:textColor="#ffffff"
+            android:textSize="18dp"
+            android:textStyle="bold" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/unknown_value"
-        android:id="@+id/cursor_song_layout_album"
-        android:layout_below="@+id/cursor_song_layout_artist"
-        android:textSize="16dp"
-        android:singleLine="true"
-        android:ellipsize="end"
-        android:layout_marginLeft="6dp"
-        android:paddingBottom="6dp"
-        android:textColor="#ffffff" />
+        <TextView
+            android:id="@+id/cursor_song_layout_artist"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/cursor_song_layout_title"
+            android:layout_marginBottom="3dp"
+            android:layout_marginLeft="6dp"
+            android:ellipsize="end"
+            android:singleLine="true"
+            android:text="@string/unknown_value"
+            android:textColor="#ffffff"
+            android:textSize="16dp" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/zero_value"
-        android:id="@+id/cursor_song_layout_ID"
-        android:visibility="gone" />
-</RelativeLayout>
+        <TextView
+            android:id="@+id/cursor_song_layout_album"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/cursor_song_layout_artist"
+            android:layout_marginLeft="6dp"
+            android:ellipsize="end"
+            android:paddingBottom="6dp"
+            android:singleLine="true"
+            android:text="@string/unknown_value"
+            android:textColor="#ffffff"
+            android:textSize="16dp" />
+
+        <TextView
+            android:id="@+id/cursor_song_layout_ID"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/zero_value"
+            android:visibility="gone" />
+    </RelativeLayout>
+</FrameLayout>

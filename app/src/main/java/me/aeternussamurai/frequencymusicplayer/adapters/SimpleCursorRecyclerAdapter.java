@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.provider.MediaStore;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -128,7 +129,7 @@ public class SimpleCursorRecyclerAdapter extends CursorRecyclerAdapter<SimpleCur
     }
 
     private void setViewImage(ImageView v) {
-        Cursor tempCursor = context.getContentResolver().query(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI, new String[]{MediaStore.Audio.Media.DATA}, MediaStore.Audio.Media.ALBUM_ID + " = ?", new String[]{cursor.getString(from[0])}, MediaStore.Audio.Media.DEFAULT_SORT_ORDER + " LIMIT 1");
+        Cursor tempCursor = context.getContentResolver().query(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI, new String[]{MediaStore.Audio.Media.DATA}, ((tag == WindowTag.PLAYLIST_SONG) ? MediaStore.Audio.Media._ID : MediaStore.Audio.Media.ALBUM_ID) + " = ?", new String[]{cursor.getString(from[0])}, MediaStore.Audio.Media.DEFAULT_SORT_ORDER + " LIMIT 1");
         if (tempCursor.moveToFirst()) {
             String path = tempCursor.getString(tempCursor.getColumnIndex(MediaStore.Audio.Media.DATA));
             Glide.with(context)
@@ -296,7 +297,9 @@ public class SimpleCursorRecyclerAdapter extends CursorRecyclerAdapter<SimpleCur
             if (tag == WindowTag.SONG || tag == WindowTag.ALBUM_SONG || tag == WindowTag.PLAYLIST_SONG) {
                 // setUp the music list from the music service
                 // start the NowPlaying activity
+                Log.d("CURSOR_ADAPTER_VH", "OnClick : Song selection");
             } else {
+                Log.d("CURSOR_ADAPTER_VH", "OnClick : Parent Selection");
                 Intent selection = new Intent(context, SelectionActivity.class);
                 selection.putExtra("WINDOW_TAG", tag);
                 selection.putExtra("SELECTION_ID", Long.parseLong(((TextView) views[0]).getText().toString()));
