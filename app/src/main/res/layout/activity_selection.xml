@@ -26,10 +26,78 @@
     <android.support.v7.widget.RecyclerView
         android:id="@+id/selection_listing"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:dividerHeight="2dp"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+        android:layout_height="match_parent"
+        android:layout_marginBottom="?attr/actionBarSize"
+        android:layout_marginTop="?attr/actionBarSize" />
 
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/main_screen_curent_song_container"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:layout_gravity="bottom"
+        android:layout_margin="@dimen/bottom_toolbar_margin"
+        android:background="@color/colorPrimary">
 
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/ms_csc_song_image"
+                android:layout_width="?attr/actionBarSize"
+                android:layout_height="match_parent"
+                android:src="@drawable/no_album_image_v2" />
+
+            <TextView
+                android:id="@+id/ms_csc_song_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toLeftOf="@+id/ms_csc_play_pause_button"
+                android:layout_toRightOf="@+id/ms_csc_song_image"
+                android:ellipsize="end"
+                android:lines="1"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
+                android:text="@string/unknown_value"
+                android:textColor="#ffffff"
+                android:textSize="18dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/ms_csc_song_artist"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/ms_csc_song_title"
+                android:layout_toLeftOf="@+id/ms_csc_play_pause_button"
+                android:layout_toRightOf="@+id/ms_csc_song_image"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:text="@string/unknown_value"
+                android:textColor="#ffffff"
+                android:textSize="16dp" />
+
+            <ToggleButton
+                android:id="@+id/ms_csc_play_pause_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/ms_csc_song_image"
+                android:layout_alignParentRight="true"
+                android:layout_alignTop="@+id/ms_csc_song_image"
+                android:background="@drawable/ic_play_pause"
+                android:checked="false"
+                android:text="New ToggleButton"
+                android:textOff=" "
+                android:textOn=" " />
+        </RelativeLayout>
+
+    </android.support.v7.widget.Toolbar>
+
+    <FrameLayout
+        android:id="@+id/extras_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone">
+
+    </FrameLayout>
 
 </android.support.design.widget.CoordinatorLayout>

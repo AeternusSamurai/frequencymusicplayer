@@ -1,4 +1,4 @@
-package me.aeternussamurai.frequencymusicplayer;
+package me.aeternussamurai.frequencymusicplayer.model;
 
 public enum Frequency {
 	ONCE_PER_LIST,

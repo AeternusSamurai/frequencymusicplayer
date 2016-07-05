@@ -19,7 +19,7 @@ import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 import me.aeternussamurai.frequencymusicplayer.MainActivity;
 import me.aeternussamurai.frequencymusicplayer.R;
-import me.aeternussamurai.frequencymusicplayer.Song;
+import me.aeternussamurai.frequencymusicplayer.model.Song;
 
 public class MusicService extends Service implements
 		MediaPlayer.OnPreparedListener, MediaPlayer.OnErrorListener,

@@ -116,10 +116,12 @@ public class ListMenusFragment extends Fragment {
             // Set the recyclerView to do the grid layout
             recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 3));
             recyclerView.setAdapter(adapter);
+            recyclerView.setHasFixedSize(true);
         } else {
             // Set the recyclerView to do the linear layout
             recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
             recyclerView.setAdapter(adapter);
+            recyclerView.setHasFixedSize(true);
         }
     }
 

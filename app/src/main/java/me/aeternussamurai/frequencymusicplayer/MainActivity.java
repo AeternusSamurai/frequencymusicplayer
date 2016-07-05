@@ -70,15 +70,15 @@ public class MainActivity extends AppCompatActivity implements GestureDetector.O
         tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(mViewPager);
 
-        detector = new GestureDetector(this,this);
-        Toolbar curSongLayout = (Toolbar)findViewById(R.id.main_screen_curent_song_container);
-        curSongLayout.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                boolean result = detector.onTouchEvent(event);
-                return result;
-            }
-        });
+//        detector = new GestureDetector(this,this);
+//        Toolbar curSongLayout = (Toolbar)findViewById(R.id.main_screen_curent_song_container);
+//        curSongLayout.setOnTouchListener(new View.OnTouchListener() {
+//            @Override
+//            public boolean onTouch(View v, MotionEvent event) {
+//                boolean result = detector.onTouchEvent(event);
+//                return result;
+//            }
+//        });
 
     }
 

@@ -2,6 +2,8 @@ package me.aeternussamurai.frequencymusicplayer;
 
 import java.util.ArrayList;
 
+import me.aeternussamurai.frequencymusicplayer.model.Song;
+
 public class Playlist {
 	private ArrayList<Song> list; //Play orders will be determined by how the list is read for saving
 	private ArrayList<Long> songIDs;

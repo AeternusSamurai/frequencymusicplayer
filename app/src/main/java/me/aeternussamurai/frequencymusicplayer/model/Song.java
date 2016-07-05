@@ -1,6 +1,6 @@
-package me.aeternussamurai.frequencymusicplayer;
+package me.aeternussamurai.frequencymusicplayer.model;
 
-public class Song implements Comparable<Song>{
+public class Song {
 
 	private long id;
 	private String title;
@@ -75,22 +75,6 @@ public class Song implements Comparable<Song>{
 	
 	public void setGenre(String g){
 		genre = g;
-	}
-
-	@Override
-	public int compareTo(Song another) {
-			if(title.compareTo(another.getTitle()) < 0)
-			{
-				return -1;
-			} 
-			else if (title.compareTo(another.getTitle()) > 0)
-			{
-				return 1;
-			}
-			else
-			{
-				return 0;
-			}
 	}
 	
 }

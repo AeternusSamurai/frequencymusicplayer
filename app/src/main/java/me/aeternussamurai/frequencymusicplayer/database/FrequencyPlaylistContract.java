@@ -6,22 +6,16 @@ import android.provider.MediaStore;
 /**
  * Created by Chase on 5/23/2015.
  */
-public class FrequencyPlaylistContract {
+public final class FrequencyPlaylistContract {
     public FrequencyPlaylistContract(){
     }
 
-    public static class FrequencyPlaylists implements BaseColumns, MediaStore.Audio.PlaylistsColumns{
+    public static abstract class FrequencyPlaylists implements BaseColumns {
 
         public static final String TABLE_NAME = "frequencyplaylists";
-        public static final String IS_FREQUENCY = "is_frequency";
+        public static final String NAME = "name";
+        public static final String NUM_SONGS = "num_songs";
+        public static final String NUM_FREQ_SONGS = "num_freq_songs";
 
-        public static final class Members implements MediaStore.Audio.AudioColumns{
-
-            public static final String TABLE_NAME = "frequencyplaylists.members";
-            public static final String _ID = "_id";
-            public static final String IS_FREQUENCY = "is_frequency";
-            public static final String PLAYLIST_ID = "playlist_id";
-
-        }
     }
 }

@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:elevation="@dimen/design_appbar_elevation"
+    app:behavior_peekHeight="?attr/actionBarSize"
+    app:layout_behavior="@string/bottom_sheet_behavior">
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/now_playing_view_pager"
+        android:layout_width="match_parent"
+        android:layout_height="325dp" />
+
+    <SeekBar
+        android:id="@+id/seekBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="315dp"
+        app:layout_anchor="@id/now_playing_view_pager"
+        app:layout_anchorGravity="bottom" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="325dp"
+        app:layout_anchor="@id/now_playing_view_pager"
+        app:layout_anchorGravity="bottom">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/zero_time"
+            android:id="@+id/time_song_current"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:textSize="18dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="20dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/zero_time"
+            android:id="@+id/time_song_remaining"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="20dp"
+            android:textSize="18dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/unknown_value"
+            android:id="@+id/song_title_text"
+            android:layout_below="@+id/time_song_current"
+            android:layout_centerHorizontal="true"
+            android:singleLine="true"
+            android:textSize="22dp"
+            android:layout_marginTop="10dp"
+            android:textAlignment="center" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/unknown_value"
+            android:id="@+id/song_artist_text"
+            android:layout_below="@+id/song_title_text"
+            android:layout_centerHorizontal="true"
+            android:textSize="20dp"
+            android:textAlignment="center" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/song_artist_text"
+            android:layout_centerHorizontal="true">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/imageView3"
+                android:src="@drawable/playback_control_bgnd"
+                android:scaleType="centerCrop"
+                android:layout_marginTop="10dp" />
+
+            <android.support.design.widget.FloatingActionButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_centerHorizontal="true"
+                android:src="@android:drawable/ic_media_play" />
+        </RelativeLayout>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/colorPrimaryDark">
+
+        <ImageView
+            android:id="@+id/ms_csc_song_image"
+            android:layout_width="?attr/actionBarSize"
+            android:layout_height="match_parent"
+            android:src="@drawable/no_album_image_v2" />
+
+        <TextView
+            android:id="@+id/ms_csc_song_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@+id/ms_csc_play_pause_button"
+            android:layout_toRightOf="@+id/ms_csc_song_image"
+            android:ellipsize="end"
+            android:lines="1"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:text="@string/unknown_value"
+            android:textColor="#ffffff"
+            android:textSize="18dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/ms_csc_song_artist"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/ms_csc_song_title"
+            android:layout_toLeftOf="@+id/ms_csc_play_pause_button"
+            android:layout_toRightOf="@+id/ms_csc_song_image"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:text="@string/unknown_value"
+            android:textColor="#ffffff"
+            android:textSize="16dp" />
+
+        <ToggleButton
+            android:id="@+id/ms_csc_play_pause_button"
+            android:layout_width="?attr/actionBarSize"
+            android:layout_height="match_parent"
+            android:layout_alignBottom="@+id/ms_csc_song_image"
+            android:layout_alignParentRight="true"
+            android:layout_alignTop="@+id/ms_csc_song_image"
+            android:background="@drawable/ic_play_pause"
+            android:checked="false"
+            android:text=""
+            android:textOff=" "
+            android:textOn=" " />
+    </RelativeLayout>
+
+</android.support.design.widget.CoordinatorLayout>
